@@ -1,44 +1,43 @@
+<!DOCTYPE html>
 <html class="dud">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-Top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
-
-          <button class="btn" style="color:white">Farm manager</button>
-          <button class="btn" style="color:white">Price observer</button>
-          <button class="btn" style="color:white">Weather Forecaster</button>
-          <button class="btn" style="color:white">Soil tester</button>  
-          <a class="btn btn-danger">Sign out</a>
-        </div>
-      </nav>
-      
 </head>
 <body class="no">
-    <h1 class="o">Welcome to Agri-link Software </h1>
-    <video autoplay muted loop id="backgroundVideo" style=" position: fixed;right: 0;bottom: 0;min-width: 100%;min-height: 100%;z-index: -1;object-fit: cover;">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
+            <button class="btn" style="color:white">Farm manager</button>
+            <button class="btn" style="color:white">Price observer</button>
+            <button class="btn" style="color:white">Weather Forecaster</button>
+            <button class="btn" style="color:white">Soil tester</button>  
+            <a class="btn btn-danger">Sign out</a>
+        </div>
+    </nav>
+    <h1 class="o">Welcome to Agri-link Software</h1>
+    <video autoplay muted loop id="backgroundVideo" style="position: fixed;right: 0;bottom: 0;min-width: 100%;min-height: 100%;z-index: -1;object-fit: cover;">
         <source src="vid.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
 </body>
 <style>
     @keyframes incr {
-                    from {
-                        transform: scale(1);
-                    }
-                     to {
-                        transform: scale(1.1);
-                    }
-                }
-    .dud {
-        text-align:center
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.1);
+        }
     }
-    .yo{
-
+    .dud {
+        text-align: center;
+    }
+    .yo {
         font-size: 50px;   
         text-transform: uppercase;
-        color:white; text-align:center
+        color: white; 
+        text-align: center;
     }
     .no {
         background-color: #24ba4a;
@@ -47,7 +46,7 @@
     }
     .btn:hover {
         background-color: white;
-        padding-left:1px;
+        padding-left: 1px;
         animation-name: incr;
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
