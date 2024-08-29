@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Fetcher</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .note {
+            margin-top: 20px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Data Fetcher</h1>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="food" class="form-label">Select Commodity:</label>
+                    <select id="food" class="form-select">
+                        <option value="">--Select--</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Grapes">Grapes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="state" class="form-label">Select State:</label>
+                    <select id="state" class="form-select">
+                        <option value="">--Select--</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn btn-primary" onclick="fetchData()">Fetch Data</button>
+        
+        <div id="error" class="alert alert-danger mt-3 d-none"></div>
+        <div id="result" class="mt-3"></div>
+        
+        <div class="note">All data is per kg and data may be incorrect.</div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const data = {
+            "Apple": {
+                "Andhra Pradesh": "apple in andhra pradesh costs 220 rupees",
+                "Karnataka": "apple in karnataka costs 170 rupees",
+                "Kerala": "apple in kerla costs 153 rupees",
+                "Manipur": "Apple cost is 220 per kg in Manipur",
+                "Tamil Nadu": "Apples cost 220 ruppes in tamil nadu",
+                "Uttar Pradesh": "Apples cost 90 rupees Uttar Pradesh",
+                "West Bengal": "Apples cost 220 rupees West Bengal"
+            },
+            "Banana": {
+                "Andhra Pradesh": "bannana cost 143 rupees",
+                "Karnataka": "bannana cost 143 rupees",
+                "Kerala": "bannana cost 59 rupees",
+                "Manipur": "bannana cost 42.5 rupees",
+                "Tamil Nadu": "bannana cost 50 rupees",
+                "Uttar Pradesh": "bannana cost 15 rupees",
+                "West Bengal": "bannana cost 230 rupees"
+            },
+            "Orange": {
+                "Andhra Pradesh": "orange cost is 61 rupees",
+                "Karnataka": "orange cost is 20.6 rupees",
+                "Kerala": "orange cost is 65 rupees",
+                "Manipur": "orange cost is 60 rupees",
+                "Tamil Nadu": "orange cost is 112 rupees",
+                "Uttar Pradesh": "orange cost is 45 rupees",
+                "West Bengal": "orange cost is 70 rupees"
+            },
+            "Grapes": {
+                "Andhra Pradesh": "grape cost is 130 rupees",
+                "Karnataka": "grape cost is 90 rupees",
+                "Kerala": "grape cost is 90 rupees",
+                "Manipur": "grape cost is 80 rupees",
+                "Tamil Nadu": "grape cost is 115 rupees",
+                "Uttar Pradesh": "grape cost is 48.5 rupees",
+                "West Bengal": "grape cost is 80 rupees"
+            }
+        };
+        
+        function fetchData() {
+            const food = document.getElementById('food').value;
+            const state = document.getElementById('state').value;
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            
+            errorDiv.classList.add('d-none');
+            resultDiv.textContent = '';
+            
+            if (food === '' || state === '') {
+                errorDiv.textContent = 'Please select both commodity and state.';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+            
+            const result = data[food]?.[state] || 'No data available for the selected combination.';
+            resultDiv.textContent = result;
+        }
+    </script>
+</body>
+</html>
