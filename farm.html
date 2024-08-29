@@ -13,10 +13,18 @@
             margin-bottom: 15px;
         }
     </style>
-</head>
-<body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://agrilinksoftware.streamlit.app" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
+
+          <a class="navbar-brand" style="color:white">Farm manager</a>
+          <a class="navbar-brand" style="color:white" href="https://yajathome.github.io/Agri-link/jug.html">Weather Forecaster</a>
+          <a class="navbar-brand" style="color:white">Price observer</a>
+          <a class="navbar-brand" style="color:white">Soil tester</a>  
+          <a class="btn btn-danger">Sign out</a>
+        </div>
+      </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
         <a class="navbar-brand" href="#">Farm Management App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,6 +52,10 @@
             </ul>
         </div>
     </nav>
+</head>
+<body style="padding-top:100px;">
+    <!-- Bootstrap Navbar -->
+    
 
     <div class="container" id="content">
         <!-- Content will be injected here based on the selected page -->
