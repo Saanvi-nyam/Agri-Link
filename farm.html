@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Management App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            margin: 20px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Farm Management App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showPage('crop-management')">Crop Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showPage('livestock-tracking')">Livestock Tracking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showPage('tasks')">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showPage('change-info')">Change Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showFarmManager()">Farm Manager</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="content">
+        <!-- Content will be injected here based on the selected page -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Initial data, if needed
+        let farmData = JSON.parse(localStorage.getItem('farmData')) || [];
+
+        function showPage(page) {
+            let content = '';
+
+            if (page === 'home') {
+                content += '<h2>Farm Overview</h2>';
+                content += '<table class="table table-bordered"><thead><tr>';
+                content += '<th>Farm Name</th><th>Location</th><th>Crop</th><th>Livestock</th><th>Area (acres)</th><th>Livestock Count</th><th>Feeding Schedule</th><th>Health Status</th>';
+                content += '</tr></thead><tbody>';
+
+                farmData.forEach(farm => {
+                    content += '<tr>';
+                    content += `<td>${farm.name}</td>`;
+                    content += `<td>${farm.location}</td>`;
+                    content += `<td>${farm.crop}</td>`;
+                    content += `<td>${farm.livestock}</td>`;
+                    content += `<td>${farm.area}</td>`;
+                    content += `<td>${farm.livestockCount}</td>`;
+                    content += `<td>${farm.feedingSchedule}</td>`;
+                    content += `<td>${farm.healthStatus}</td>`;
+                    content += '</tr>';
+                });
+
+                content += '</tbody></table>';
+
+            } else if (page === 'crop-management') {
+                content += '<h2>Crop Management</h2>';
+                content += '<div class="form-group"><label for="crop">Select Crop:</label><select id="crop" class="form-control" onchange="showCropDetails()"><option value="">Select Crop</option>';
+
+                const crops = [...new Set(farmData.map(f => f.crop).filter(crop => crop))];
+                crops.forEach(crop => {
+                    content += `<option value="${crop}">${crop}</option>`;
+                });
+
+                content += '</select></div>';
+                content += '<div id="crop-details"></div>';
+
+            } else if (page === 'livestock-tracking') {
+                content += '<h2>Livestock Tracking</h2>';
+                content += '<div class="form-group"><label for="livestock">Select Livestock:</label><select id="livestock" class="form-control" onchange="showLivestockDetails()"><option value="">Select Livestock</option>';
+
+                const livestock = [...new Set(farmData.map(f => f.livestock).filter(livestock => livestock))];
+                livestock.forEach(livestockItem => {
+                    content += `<option value="${livestockItem}">${livestockItem}</option>`;
+                });
+
+                content += '</select></div>';
+                content += '<div id="livestock-details"></div>';
+
+            } else if (page === 'tasks') {
+                content += '<h2>Task Management</h2>';
+                content += '<div class="form-container">';
+                content += '<div class="form-group"><label for="new-task">Enter a new task:</label><textarea id="new-task" class="form-control"></textarea></div>';
+                content += '<button class="btn btn-primary" onclick="addTask()">Add Task</button>';
+                content += '<div id="tasks-list"></div>';
+                content += '</div>';
+
+            } else if (page === 'change-info') {
+                content += '<h2>Change Information</h2>';
+
+                content += '<h3>Add a new farm:</h3>';
+                content += '<div class="form-container">';
+                content += '<div class="form-group"><label for="farm-name">Farm Name:</label><input type="text" id="farm-name" class="form-control"></div>';
+                content += '<div class="form-group"><label for="farm-location">Location:</label><input type="text" id="farm-location" class="form-control"></div>';
+                content += '<div class="form-group"><label for="farm-area">Area (acres):</label><input type="number" id="farm-area" class="form-control" min="0"></div>';
+                content += '<button class="btn btn-secondary" onclick="addFarm()">Add Farm</button>';
+                content += '</div>';
+
+                content += '<h3>Add a new crop:</h3>';
+                content += '<div class="form-container">';
+                content += '<div class="form-group"><label for="crop-name">Crop Name:</label><input type="text" id="crop-name" class="form-control"></div>';
+                content += '<div class="form-group"><label for="crop-farm">Farm Name:</label><select id="crop-farm" class="form-control"></select></div>';
+                content += '<button class="btn btn-secondary" onclick="addCrop()">Add Crop</button>';
+                content += '</div>';
+
+                content += '<h3>Add new livestock:</h3>';
+                content += '<div class="form-container">';
+                content += '<div class="form-group"><label for="livestock-type">Livestock Type:</label><input type="text" id="livestock-type" class="form-control"></div>';
+                content += '<div class="form-group"><label for="livestock-farm">Farm Name:</label><select id="livestock-farm" class="form-control"></select></div>';
+                content += '<div class="form-group"><label for="livestock-count">Count:</label><input type="number" id="livestock-count" class="form-control" min="0"></div>';
+                content += '<div class="form-group"><label for="feeding-schedule">Feeding Schedule:</label><select id="feeding-schedule" class="form-control"><option>Twice a day</option><option>Three times a day</option><option>Once a day</option></select></div>';
+                content += '<div class="form-group"><label for="health-status">Health Status:</label><select id="health-status" class="form-control"><option>Good</option><option>Fair</option><option>Poor</option><option>Excellent</option></select></div>';
+                content += '<button class="btn btn-secondary" onclick="addLivestock()">Add Livestock</button>';
+                content += '</div>';
+
+            }
+
+            document.getElementById('content').innerHTML = content;
+
+            // Populate farm select dropdowns
+            populateFarmDropdowns();
+        }
+
+        function populateFarmDropdowns() {
+            const farmSelects = document.querySelectorAll('#crop-farm, #livestock-farm');
+            farmSelects.forEach(select => {
+                select.innerHTML = '<option value="">Select Farm</option>';
+                farmData.forEach(farm => {
+                    const option = document.createElement('option');
+                    option.value = farm.name;
+                    option.textContent = farm.name;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        function addFarm() {
+            const farmName = document.getElementById('farm-name').value;
+            const location = document.getElementById('farm-location').value;
+            const areaAcres = document.getElementById('farm-area').value;
+
+            if (farmName && location && areaAcres) {
+                const newFarm = {
+                    name: farmName,
+                    location: location,
+                    crop: '',
+                    livestock: '',
+                    area: Number(areaAcres),
+                    livestockCount: 0,
+                    feedingSchedule: '',
+                    healthStatus: ''
+                };
+
+                farmData.push(newFarm);
+                saveToLocalStorage();
+                showPage('home');
+                document.getElementById('farm-name').value = '';
+                document.getElementById('farm-location').value = '';
+                document.getElementById('farm-area').value = '';
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function addCrop() {
+            const cropName = document.getElementById('crop-name').value;
+            const farmName = document.getElementById('crop-farm').value;
+
+            if (cropName && farmName) {
+                const farm = farmData.find(f => f.name === farmName);
+                if (farm) {
+                    farm.crop = cropName;
+                    saveToLocalStorage();
+                    showPage('crop-management');
+                    document.getElementById('crop-name').value = '';
+                } else {
+                    alert('Farm not found.');
+                }
+            } else {
+                alert('Please select a farm and enter a crop name.');
+            }
+        }
+
+        function addLivestock() {
+            const livestockType = document.getElementById('livestock-type').value;
+            const farmName = document.getElementById('livestock-farm').value;
+            const count = document.getElementById('livestock-count').value;
+            const feedingSchedule = document.getElementById('feeding-schedule').value;
+            const healthStatus = document.getElementById('health-status').value;
+
+            if (livestockType && farmName && count && feedingSchedule && healthStatus) {
+                const farm = farmData.find(f => f.name === farmName);
+                if (farm) {
+                    farm.livestock = livestockType;
+                    farm.livestockCount = Number(count);
+                    farm.feedingSchedule = feedingSchedule;
+                    farm.healthStatus = healthStatus;
+                    saveToLocalStorage();
+                    showPage('livestock-tracking');
+                    document.getElementById('livestock-type').value = '';
+                    document.getElementById('livestock-farm').value = '';
+                    document.getElementById('livestock-count').value = '';
+                    document.getElementById('feeding-schedule').value = 'Twice a day';
+                    document.getElementById('health-status').value = 'Good';
+                } else {
+                    alert('Farm not found.');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        function addTask() {
+            const newTask = document.getElementById('new-task').value;
+
+            if (newTask) {
+                const taskList = document.getElementById('tasks-list');
+                const taskItem = document.createElement('div');
+                taskItem.className = 'alert alert-info';
+                taskItem.textContent = newTask;
+                taskList.appendChild(taskItem);
+                document.getElementById('new-task').value = '';
+                updateData();
+            } else {
+                alert('Please enter a task.');
+            }
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('farmData', JSON.stringify(farmData));
+        }
+
+        function loadFromLocalStorage() {
+            const data = localStorage.getItem('farmData');
+            if (data) {
+                farmData = JSON.parse(data);
+            }
+        }
+
+        // Initialize the app
+        function initialize() {
+            loadFromLocalStorage();
+            showPage('home');
+        }
+
+        // Run initialization on page load
+        initialize();
+    </script>
+</body>
+</html>
