@@ -77,29 +77,29 @@
             let content = '';
 
             if (page === 'home') {
-                content += '<h2 class="no">Farm Overview</h2>';
-                content += '<table class="table table-bordered" style="background-color:white"><thead><tr>';
-                content += '<div style="background-color:white"><th>Farm Name</th><th>Location</th><th>Crop</th><th>Livestock</th><th>Area (acres)</th><th>Livestock Count</th><th>Feeding Schedule</th><th>Health Status</th></div>';
+                content += '<h2 style="color:white">Farm Overview</h2>';
+                content += '<table class="table table-bordered" style="color:white"><thead><tr>';
+                content += '<div style="color:white"><th>Farm Name</th><th>Location</th><th>Crop</th><th>Livestock</th><th>Area (acres)</th><th>Livestock Count</th><th>Feeding Schedule</th><th>Health Status</th></div>';
                 content += '</tr></thead><tbody>';
 
                 farmData.forEach(farm => {
-                    content += '<tr style="background-color:white">';
-                    content += `<td style="background-color:white">${farm.name}</td>`;
-                    content += `<td style="background-color:white">${farm.location}</td>`;
-                    content += `<td style="background-color:white">${farm.crop}</td>`;
-                    content += `<td style="background-color:white">${farm.livestock}</td>`;
-                    content += `<td style="background-color:white">${farm.area}</td>`;
-                    content += `<td style="background-color:white">${farm.livestockCount}</td>`;
-                    content += `<td style="background-color:white">${farm.feedingSchedule}</td>`;
-                    content += `<td style="background-color:white">${farm.healthStatus}</td>`;
+                    content += '<tr style="color:white">';
+                    content += `<td style="color:white">${farm.name}</td>`;
+                    content += `<td style="color:white">${farm.location}</td>`;
+                    content += `<td style="color:white">${farm.crop}</td>`;
+                    content += `<td style="color:white">${farm.livestock}</td>`;
+                    content += `<td style="color:white">${farm.area}</td>`;
+                    content += `<td style="color:white">${farm.livestockCount}</td>`;
+                    content += `<td style="color:white">${farm.feedingSchedule}</td>`;
+                    content += `<td style="color:white">${farm.healthStatus}</td>`;
                     content += '</tr>';
                 });
 
                 content += '</tbody></table>';
 
             } else if (page === 'crop-management') {
-                content += '<h2 style="background-color:white">Crop Management</h2>';
-                content += '<div style="background-color:white" class="form-group"><label for="crop">Select Crop:</label><select id="crop" class="form-control" onchange="showCropDetails()"><option value="">Select Crop</option>';
+                content += '<h2 style="color:white">Crop Management</h2>';
+                content += '<div style="color:white" class="form-group"><label for="crop">Select Crop:</label><select id="crop" class="form-control" onchange="showCropDetails()"><option value="">Select Crop</option>';
 
                 const crops = [...new Set(farmData.map(f => f.crop).filter(crop => crop))];
                 crops.forEach(crop => {
@@ -107,54 +107,54 @@
                 });
 
                 content += '</select></div>';
-                content += '<div id="crop-details" style="background-color:white"></div>';
+                content += '<div id="crop-details" style="color:white"></div>';
 
             } else if (page === 'livestock-tracking') {
-                content += '<h2 style="background-color:white">Livestock Tracking</h2>';
-                content += '<div style="background-color:white" class="form-group"><label for="livestock">Select Livestock:</label><select id="livestock" class="form-control" onchange="showLivestockDetails()"><option value="">Select Livestock</option>';
+                content += '<h2 style="color:white">Livestock Tracking</h2>';
+                content += '<div style="color:white" class="form-group"><label for="livestock">Select Livestock:</label><select id="livestock" class="form-control" onchange="showLivestockDetails()"><option value="">Select Livestock</option>';
 
                 const livestock = [...new Set(farmData.map(f => f.livestock).filter(livestock => livestock))];
                 livestock.forEach(livestockItem => {
-                    content += `<option style="background-color:white" value="${livestockItem}">${livestockItem}</option>`;
+                    content += `<option style="color:white" value="${livestockItem}">${livestockItem}</option>`;
                 });
 
                 content += '</select></div>';
-                content += '<div style="background-color:white" id="livestock-details"></div>';
+                content += '<div style="color:white" id="livestock-details"></div>';
 
             } else if (page === 'tasks') {
-                content += '<h2 style="background-color:white">Task Management</h2>';
-                content += '<div style="background-color:white" class="form-container">';
-                content += '<div style="background-color:white" class="form-group"><label for="new-task">Enter a new task:</label><textarea id="new-task" class="form-control"></textarea></div>';
-                content += '<button style="background-color:white" class="btn btn-primary" onclick="addTask()">Add Task</button>';
-                content += '<div style="background-color:white" id="tasks-list"></div>';
+                content += '<h2 style="color:white">Task Management</h2>';
+                content += '<div style="color:white" class="form-container">';
+                content += '<div style="color:white" class="form-group"><label for="new-task">Enter a new task:</label><textarea id="new-task" class="form-control"></textarea></div>';
+                content += '<button style="color:white" class="btn btn-primary" onclick="addTask()">Add Task</button>';
+                content += '<div style="color:white" id="tasks-list"></div>';
                 content += '</div>';
 
             } else if (page === 'change-info') {
-                content += '<h2 style="background-color:white">Change Information</h2>';
+                content += '<h2 style="color:white">Change Information</h2>';
 
-                content += '<h3 style="background-color:white">Add a new farm:</h3>';
-                content += '<div style="background-color:white" class="form-container">';
-                content += '<div style="background-color:white" class="form-group"><label for="farm-name">Farm Name:</label><input type="text" id="farm-name" class="form-control"></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="farm-location">Location:</label><input type="text" id="farm-location" class="form-control"></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="farm-area">Area (acres):</label><input type="number" id="farm-area" class="form-control" min="0"></div>';
-                content += '<button style="background-color:white" class="btn btn-secondary" onclick="addFarm()">Add Farm</button>';
+                content += '<h3 style="color:white">Add a new farm:</h3>';
+                content += '<div style="color:white" class="form-container">';
+                content += '<div style="color:white" class="form-group"><label for="farm-name">Farm Name:</label><input type="text" id="farm-name" class="form-control"></div>';
+                content += '<div style="color:white" class="form-group"><label for="farm-location">Location:</label><input type="text" id="farm-location" class="form-control"></div>';
+                content += '<div style="color:white" class="form-group"><label for="farm-area">Area (acres):</label><input type="number" id="farm-area" class="form-control" min="0"></div>';
+                content += '<button style="color:white" class="btn btn-secondary" onclick="addFarm()">Add Farm</button>';
                 content += '</div>';
 
-                content += '<h3 style="background-color:white">Add a new crop:</h3>';
-                content += '<div style="background-color:white" class="form-container">';
-                content += '<div style="background-color:white" class="form-group"><label for="crop-name">Crop Name:</label><input type="text" id="crop-name" class="form-control"></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="crop-farm">Farm Name:</label><select id="crop-farm" class="form-control"></select></div>';
-                content += '<button style="background-color:white" class="btn btn-secondary" onclick="addCrop()">Add Crop</button>';
+                content += '<h3 style="color:white">Add a new crop:</h3>';
+                content += '<div style="color:white" class="form-container">';
+                content += '<div style="color:white" class="form-group"><label for="crop-name">Crop Name:</label><input type="text" id="crop-name" class="form-control"></div>';
+                content += '<div style="color:white" class="form-group"><label for="crop-farm">Farm Name:</label><select id="crop-farm" class="form-control"></select></div>';
+                content += '<button style="color:white" class="btn btn-secondary" onclick="addCrop()">Add Crop</button>';
                 content += '</div>';
 
-                content += '<h3 style="background-color:white">Add new livestock:</h3>';
-                content += '<div style="background-color:white" class="form-container">';
-                content += '<div style="background-color:white" class="form-group"><label for="livestock-type">Livestock Type:</label><input type="text" id="livestock-type" class="form-control"></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="livestock-farm">Farm Name:</label><select id="livestock-farm" class="form-control"></select></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="livestock-count">Count:</label><input type="number" id="livestock-count" class="form-control" min="0"></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="feeding-schedule">Feeding Schedule:</label><select id="feeding-schedule" class="form-control"><option>Twice a day</option><option>Three times a day</option><option>Once a day</option></select></div>';
-                content += '<div style="background-color:white" class="form-group"><label for="health-status">Health Status:</label><select id="health-status" class="form-control"><option>Good</option><option>Fair</option><option>Poor</option><option>Excellent</option></select></div>';
-                content += '<button class="btn btn-secondary" style="background-color:white" onclick="addLivestock()">Add Livestock</button>';
+                content += '<h3 style="color:white">Add new livestock:</h3>';
+                content += '<div style="color:white" class="form-container">';
+                content += '<div style="color:white" class="form-group"><label for="livestock-type">Livestock Type:</label><input type="text" id="livestock-type" class="form-control"></div>';
+                content += '<div style="color:white" class="form-group"><label for="livestock-farm">Farm Name:</label><select id="livestock-farm" class="form-control"></select></div>';
+                content += '<div style="color:white" class="form-group"><label for="livestock-count">Count:</label><input type="number" id="livestock-count" class="form-control" min="0"></div>';
+                content += '<div style="color:white" class="form-group"><label for="feeding-schedule">Feeding Schedule:</label><select id="feeding-schedule" class="form-control"><option>Twice a day</option><option>Three times a day</option><option>Once a day</option></select></div>';
+                content += '<div style="color:white" class="form-group"><label for="health-status">Health Status:</label><select id="health-status" class="form-control"><option>Good</option><option>Fair</option><option>Poor</option><option>Excellent</option></select></div>';
+                content += '<button class="btn btn-secondary" style="color:white" onclick="addLivestock()">Add Livestock</button>';
                 content += '</div>';
 
             }
@@ -168,7 +168,7 @@
         function populateFarmDropdowns() {
             const farmSelects = document.querySelectorAll('#crop-farm, #livestock-farm');
             farmSelects.forEach(select => {
-                select.innerHTML = '<option style="background-color:white" value="">Select Farm</option>';
+                select.innerHTML = '<option style="color:white" value="">Select Farm</option>';
                 farmData.forEach(farm => {
                     const option = document.createElement('option');
                     option.value = farm.name;
