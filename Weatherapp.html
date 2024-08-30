@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Recommendation Based on Weather and Terrain</title>
     <style>
@@ -29,15 +30,30 @@
             margin-top: 20px;
         }
     </style>
+    <video autoplay muted loop id="backgroundVideo" style=" position: fixed;right: 0;bottom: 0;min-width: 100%;min-height: 100%;z-index: -1;object-fit: cover;">
+        <source src="vid.mp4" class="du" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="https://agrilinksoftware.streamlit.app" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
+
+          <a class="navbar-brand" style="color:white" href="https://yajathome.github.io/Agri-link/farm.html">Farm manager</a>
+          <a class="navbar-brand" style="color:white" href="https://yajathome.github.io/Agri-link/Weatherapp.html">Weather Forecaster</a>
+          <a class="navbar-brand" style="color:white" href="https://yajathome.github.io/Agri-link/PriceObserver.html">Price observer</a>
+          <a class="navbar-brand" style="color:white" href="https://yajathome.github.io/Agri-Link/soilt.html">Soil tester</a>  
+          <a class="btn btn-danger">Sign out</a>
+        </div>
+      </nav>
 </head>
-<body>
+<body style="color:white;padding-top:60px">
     <div class="container">
         <h1>Crop Recommendation Based on Weather and Terrain</h1>
         <p>Enter the details below to get crop recommendations based on the weather and terrain conditions.</p>
         
         <div class="form-group">
             <label for="state">Select your state:</label>
-            <select id="state">
+            <select id="state" class="form-control">
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Tamil Nadu">Tamil Nadu</option>
                 <option value="Kerala">Kerala</option>
@@ -47,7 +63,7 @@
 
         <div class="form-group">
             <label for="terrain">Select your terrain:</label>
-            <select id="terrain">
+            <select id="terrain" class="form-control">
                 <option value="Plain">Plain</option>
                 <option value="Plateau">Plateau</option>
                 <option value="Mountain">Mountain</option>
@@ -56,7 +72,7 @@
 
         <div class="form-group">
             <label for="month">Select the month:</label>
-            <select id="month">
+            <select id="month" class="form-control">
                 <option value="March">March</option>
                 <option value="April">April</option>
                 <option value="September">September</option>
@@ -66,7 +82,7 @@
             </select>
         </div>
 
-        <button onclick="getRecommendation()">Get Recommendation</button>
+        <button onclick="getRecommendation()" class="btn btn-danger">Get Recommendation</button>
 
         <div class="result">
             <h2>Weather Info:</h2>
