@@ -91,7 +91,7 @@
                 "Karnataka": "Bangalore",
             };
             const city = stateToCity[state];
-
+        
             // Fetch weather data
             const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`);
             if (!weatherResponse.ok) {
@@ -99,36 +99,38 @@
                 document.getElementById('crop-info').textContent = '';
                 return;
             }
-
+        
             const weatherData = await weatherResponse.json();
             const weatherDescription = weatherData.weather[0].description;
             const temperatureFahrenheit = weatherData.main.temp;
             const temperatureCelsius = Math.round((temperatureFahrenheit - 32) * 5 / 9);
-
+        
             document.getElementById('weather-info').textContent = `The weather in ${city} is currently ${weatherDescription} with a temperature of ${temperatureCelsius}°C.`;
-
+        
             // Determine crop recommendation
             let cropRecommendation = '';
             if (month === 'march' || month === 'april') {
                 if (terrain === 'plain' || terrain === 'plateau') {
                     cropRecommendation = 'The conditions are suitable for planting zaid crops.';
+                } else {
+                    cropRecommendation = 'The conditions are not ideal for planting zaid crops in this terrain.';
                 }
-            } else if (month === 'october' || month === 'december') {
-                if (terrain === 'plain' && 25 < temperatureCelsius && temperatureCelsius < 30) {
+            } else if (month === 'october' || month === 'november') {
+                if (terrain === 'plain' && temperatureCelsius > 25 && temperatureCelsius < 30) {
                     cropRecommendation = 'The conditions are suitable for successfully planting rabi crops.';
-                } else if (terrain === 'plateau' && 25 < temperatureCelsius && temperatureCelsius < 30) {
+                } else if (terrain === 'plateau' && temperatureCelsius > 25 && temperatureCelsius < 30) {
                     cropRecommendation = 'You can plant rabi crops, but you should take extremely good care.';
-                } else if (terrain === 'mountain' && 25 < temperatureCelsius && temperatureCelsius < 30) {
+                } else if (terrain === 'mountain' && temperatureCelsius > 25 && temperatureCelsius < 30) {
                     cropRecommendation = 'It is going to be very hard to farm.';
                 } else {
                     cropRecommendation = 'The conditions are not suitable for planting rabi crops.';
                 }
-            } else if (month === 'september' || month === 'october') {
-                if (terrain === 'plain' && 20 < temperatureCelsius && temperatureCelsius < 25) {
+            } else if (month === 'september') {
+                if (terrain === 'plain' && temperatureCelsius > 20 && temperatureCelsius < 25) {
                     cropRecommendation = 'The conditions are suitable for successfully planting kharif crops, and the plain terrain makes it easier.';
-                } else if (terrain === 'plateau' && 20 < temperatureCelsius && temperatureCelsius < 25) {
+                } else if (terrain === 'plateau' && temperatureCelsius > 20 && temperatureCelsius < 25) {
                     cropRecommendation = 'You can plant kharif crops, but it would take effort.';
-                } else if (terrain === 'mountain' && 20 < temperatureCelsius && temperatureCelsius < 25) {
+                } else if (terrain === 'mountain' && temperatureCelsius > 20 && temperatureCelsius < 25) {
                     cropRecommendation = 'The conditions are good for planting kharif crops, but it is going to be very hard to farm.';
                 } else {
                     cropRecommendation = 'The conditions are not suitable for planting kharif crops.';
@@ -136,7 +138,7 @@
             } else {
                 cropRecommendation = 'The current month is not suitable for planting either rabi or kharif crops based on the given conditions.';
             }
-
+        
             document.getElementById('crop-info').textContent = cropRecommendation;
         }
     </script>
