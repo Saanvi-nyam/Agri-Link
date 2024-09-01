@@ -27,52 +27,50 @@
         <source src="vid.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
+      
 </head>
-<body style="padding:60px;color:white">
-    <div class="container mt-4">
+<body style="padding-top:80px;color:black;">
+    <div class="container">
         <h1 class="mb-4">Data Fetcher</h1>
-        
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="food" class="form-label">Select Commodity:</label>
-                    <select id="food" class="form-control">
-                        <option value="">--Select--</option>
-                        <option value="Apple">Apple</option>
-                        <option value="Banana">Banana</option>
-                        <option value="Orange">Orange</option>
-                        <option value="Grapes">Grapes</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="state" class="form-label">Select State:</label>
-                    <select id="state" class="form-control">
-                        <option value="">--Select--</option>
-                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                        <option value="Karnataka">Karnataka</option>
-                        <option value="Kerala">Kerala</option>
-                        <option value="Manipur">Manipur</option>
-                        <option value="Tamil Nadu">Tamil Nadu</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                        <option value="West Bengal">West Bengal</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-        <button class="btn btn-primary" onclick="fetchData()">Fetch Data</button>
-        
-        <div id="error" class="alert alert-danger mt-3 d-none"></div>
-        <div id="result" class="mt-3"></div>
-        
-        <div class="note">All data is per kg and data may be incorrect.</div>
     </div>
+            <div class="container">
+                <label for="food" class="form-label">Select Commodity:</label>
+                <select id="food" class="form-control">
+                    <option value="">--Select--</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Banana">Banana</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Grapes">Grapes</option>
+                </select>
+            </div>
+        <div class="container">
+            <label for="state" class="form-label">Select State:</label>
+            <select id="state" class="form-control">
+                <option value="">--Select--</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="West Bengal">West Bengal</option>
+            </select>
+        </div>
+        <div class="container">
+            <p></p>
+            <button class="btn btn-primary" style="" onclick="fetchData()">Fetch Data</button>
+        
+
+        
+            <div id="error" class="alert alert-danger mt-3 d-none"></div>
+            <div id="result" class="mt-3"></div>
+        
+            <div class="note">All data is per kg and data may be incorrect.</div>
+        </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script style="color: white;">
+    <script style="color:black;">
         const data = {
             "Apple": {
                 "Andhra Pradesh": "apple in andhra pradesh costs 220 rupees",
