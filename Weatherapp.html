@@ -59,52 +59,61 @@
         </div>
       </nav>
 </head>
-<body style="color:white;padding-top:60px">
+<body style="padding-top:100px;color:white;padding-left:320px; padding-right:320px;">
     <div class="container">
-        <h1>Crop Recommendation Based on Weather and Terrain</h1>
-        <p>Enter the details below to get crop recommendations based on the weather and terrain conditions.</p>
+        <h1 style="padding-bottom:20px" >Crop Recommendation Based on Weather and Terrain</h1>
+        <p style="padding-bottom:20px">Enter the details below to get crop recommendations based on the weather and terrain conditions.</p>
         
-        <div class="form-group">
-            <label for="state">Select your state:</label>
-            <select id="state" class="form-control">
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Karnataka">Karnataka</option>
-            </select>
-        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group" style="padding-bottom:20px">
+                    <label for="state">Select your state:</label>
+                    <select id="state" class="form-control">
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Karnataka">Karnataka</option>
+                    </select>
+                </div>
+            
 
-        <div class="form-group">
-            <label for="terrain">Select your terrain:</label>
-            <select id="terrain" class="form-control">
-                <option value="Plain">Plain</option>
-                <option value="Plateau">Plateau</option>
-                <option value="Mountain">Mountain</option>
-            </select>
-        </div>
+                
+                <div class="form-group" style="padding-bottom:20px">
+                    <label for="terrain">Select your terrain:</label>
+                    <select id="terrain" class="form-control">
+                        <option value="Plain">Plain</option>
+                        <option value="Plateau">Plateau</option>
+                        <option value="Mountain">Mountain</option>
+                    </select>
+                </div>
+    
+                <div class="form-group" style="padding-bottom:20px">
+                    <label for="month">Select the month:</label>
+                    <select id="month" class="form-control">
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+            </div>
+        
 
-        <div class="form-group">
-            <label for="month">Select the month:</label>
-            <select id="month" class="form-control">
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-            </select>
-        </div>
-
-        <button onclick="getRecommendation()" class="btn btn-danger">Get Recommendation</button>
-
-        <div class="result">
-            <h2>Weather Info:</h2>
-            <p id="weather-info"></p>
-            <h2>Crop Recommendation:</h2>
-            <p id="crop-info"></p>
+       
+            <div class="col">
+                <div class="result" style="padding-bottom:20px">
+                    <h2>Weather Info:</h2>
+                    <p id="weather-info"></p>
+                    <h2>Crop Recommendation:</h2>
+                    <p id="crop-info"></p>
+                </div>
+            </div>
         </div>
     </div>
-
+    
+    <button onclick="getRecommendation()" class="btn btn-danger">Get Recommendation</button>
     <script>
         async function getRecommendation() {
             const state = document.getElementById('state').value;
