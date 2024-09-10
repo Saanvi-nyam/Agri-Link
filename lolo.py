@@ -35,3 +35,4 @@ if submit_button:
     input_data = np.array([[N, P, K, temperature, humidity, pH, rainfall]])
     predictions = loaded_model.predict(input_data)
     st.subheader(f"Predictions: {predictions}")
+
