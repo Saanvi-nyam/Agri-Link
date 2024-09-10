@@ -14,7 +14,7 @@ def load_model():
 
 loaded_model = load_model()
 
-st.title('Crop Recommendation Predictor')
+st.html('')
 
 # Input form for the user to enter the environmental conditions
 with st.form("prediction_form"):
