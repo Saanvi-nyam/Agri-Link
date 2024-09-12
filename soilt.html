@@ -100,6 +100,10 @@
             line-height: 50px;
             border-radius: 15px;
             background-color: #f1f1f1;
+            animation-name: incr;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+            border-radius: 5px;
             }
 
         .chip img {
@@ -109,5 +113,19 @@
             width: 50px;
             border-radius: 50%;
             }
+        @keyframes incr {
+                from {
+                    transform: scale(1);
+                    }
+                to {
+                    transform: scale(1.1);
+                }
+            }
+        .card {
+            animation-name: incr;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+            border-radius: 5px;
+        }
     </style>
 </html>
