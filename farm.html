@@ -67,7 +67,7 @@
     <!-- Bootstrap Navbar -->
     
 
-    <div class="container" id="content">
+    <div class="container"  id="content">
         <!-- Content will be injected here based on the selected page -->
     </div>
     <div>
@@ -98,6 +98,7 @@
                     content += `<td style="color:black">${farm.livestockCount}</td>`;
                     content += `<td style="color:black">${farm.feedingSchedule}</td>`;
                     content += `<td style="color:black">${farm.healthStatus}</td>`;
+                   
                     content += '</tr>';
                 });
 
@@ -116,16 +117,23 @@
                 content += '<div id="crop-details" style="color:white"></div>';
 
             } else if (page === 'livestock-tracking') {
-                content += '<h2 style="color:white">Livestock Tracking</h2>';
-                content += '<div style="color:white" class="form-group"><label for="livestock">Select Livestock:</label><select id="livestock" class="form-control" onchange="showLivestockDetails()"><option value="">Select Livestock</option>';
 
-                const livestock = [...new Set(farmData.map(f => f.livestock).filter(livestock => livestock))];
-                livestock.forEach(livestockItem => {
-                    content += `<option style="color:white" value="${livestockItem}">${livestockItem}</option>`;
-                });
+                    farmData.forEach(farm => {
+                    content += '<div  style="width:fit-content">';
+                    content += '<div class="card" style="padding:30px;margin-right:80%;width:340px">';
+                    content += `<h4>${farm.livestockCount}</h4>`;
+                    content += `<h4>${farm.feedingSchedule}</h4>`;
+                    content += `<h4>${farm.healthStatus}</h4>`;
+                    content += '</div>';
+                    content += '</div>';
+                    });
+                content += '<div style="width:340px;float:right"><h1 style="color: white;text-align: right;" >Livestock Tracking</h1></div>';
+                
 
-                content += '</select></div>';
-                content += '<div style="color:white" id="livestock-details"></div>';
+                
+               
+
+                content += '</div>';
 
             } else if (page === 'tasks') {
                 content += '<h2 style="color:white">Task Management</h2>';
