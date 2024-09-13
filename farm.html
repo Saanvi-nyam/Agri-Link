@@ -117,18 +117,22 @@
                 content += '<div id="crop-details" style="color:white"></div>';
 
             } else if (page === 'livestock-tracking') {
-
-                    farmData.forEach(farm => {
-                    content += '<div  style="width:fit-content">';
+                content += '<div class="row">';
+                content += '<div class="col-3" style="width:fit-content">';
+                farmData.forEach(farm => {
+                    content += '<div style="padding-bottom:30px">';
                     content += '<div class="card" style="padding:30px;margin-right:80%;width:340px">';
-                    content += `<h4>${farm.livestockCount}</h4>`;
-                    content += `<h4>${farm.feedingSchedule}</h4>`;
-                    content += `<h4>${farm.healthStatus}</h4>`;
+                    content += `<h1>${farm.livestock}</h1>`;
+                    content += `<p>${farm.livestockCount}</p>`;
+                    content += `<p>${farm.feedingSchedule}</p>`;
+                    content += `<p>${farm.healthStatus}</p>`;
                     content += '</div>';
                     content += '</div>';
+                    
                     });
-                content += '<div style="width:340px;float:right"><h1 style="color: white;text-align: right;" >Livestock Tracking</h1></div>';
-                
+                content += '</div>';
+                content += '<div style="position:fixed"><div class="col-3" style="padding-left:50%;text-align:right;position:relative;padding-top:20%;font-weight:BOLDER;"><h1 style="font-weight:BOLDER;font-size:50px;margin-auto;color: white;text-align: left;" >Livestock Tracking</h1></div></div>';
+                content +=  '</div>'
 
                 
                
