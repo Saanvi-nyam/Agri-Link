@@ -7,7 +7,7 @@ import joblib
 
 @st.cache_data
 def load_model():
-    model_path = r"NPKModel.pkl"  
+    model_path = r"sources/NPKModel.pkl"  
     # made by saanvi 
     model = joblib.load(model_path)
     return model
