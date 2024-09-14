@@ -110,12 +110,14 @@
                     <p id="weather-info"></p>
                     <h2>Crop Recommendation:</h2>
                     <p id="crop-info"></p>
+                    <div style="float:initial;padding-top:17px" ><button onclick="getRecommendation()" style="width:200px;" class="btn btn-info ">Get Recommendation</button></div>
                 </div>
             </div>
+            
         </div>
     </div>
     
-    <button onclick="getRecommendation()" class="btn btn-danger">Get Recommendation</button>
+    
     <script>
         async function getRecommendation() {
             const state = document.getElementById('state').value;
