@@ -137,25 +137,26 @@
 
             } else if (page === 'change-info') {
                 content += '<h2 style="color:white">Change Information</h2>';
-                content += '<div class="row"><div class="col"><h3 style="color:white">Add a new farm:</h3><div style="color:white" class="form-container"><div style="color:white" class="form-group"><label for="farm-name">Farm Name:</label><input type="text" id="farm-name" class="form-control"></div><div style="color:white" class="form-group"><label for="farm-location">Location:</label><input type="text" id="farm-location" class="form-control"></div><div style="color:white" class="form-group"><label for="farm-area">Area (acres):</label><input type="number" id="farm-area" class="form-control" min="0"></div><button style="color:white" class="btn btn-secondary" onclick="addFarm()">Add Farm</button></div></div>';
+                content += '<div class="row"><div class="col"><h3 style="color:white">Add a new farm:</h3><div style="color:white" class="form-container"><div style="color:white" class="form-group"><label for="farm-name">Farm Name:</label><input type="text" id="farm-name" class="form-control"></div><div style="color:white" class="form-group"><label for="farm-location">Location:</label><input type="text" id="farm-location" class="form-control"></div><div style="color:white" class="form-group"><label for="farm-area">Area (acres):</label><input type="number" id="farm-area" class="form-control" min="0"></div><button style="color:black" class="btn btn-info" onclick="addFarm()">Add Farm</button></div></div>';
 
                 content += '<div class="col">';
+                content += '<h3 style="color:white">Add new crop</h3>';
                 content += '<div style="color:white" class="form-container">';
                 content += '<div style="color:white" class="form-group"><label for="crop-name">Crop Name:</label><input type="text" id="crop-name" class="form-control"></div>';
                 content += '<div style="color:white" class="form-group"><label for="crop-farm">Farm Name:</label><select id="crop-farm" class="form-control"></select></div>';
-                content += '<button style="color:white" class="btn btn-secondary" onclick="addCrop()">Add Crop</button>';
+                content += '<button style="color:black" class="btn btn-info" onclick="addCrop()">Add Crop</button>';
                 content += '</div>';
                 content += '</div>';
 
                 content += '<div class="col">';
-                content += '<h3 style="color:white">Add new livestock:</h3>';
+                content += '<h3 style="color:black">Add new livestock:</h3>';
                 content += '<div style="color:white" class="form-container">';
                 content += '<div style="color:white" class="form-group"><label for="livestock-type">Livestock Type:</label><input type="text" id="livestock-type" class="form-control"></div>';
                 content += '<div style="color:white" class="form-group"><label for="livestock-farm">Farm Name:</label><select id="livestock-farm" class="form-control"></select></div>';
                 content += '<div style="color:white" class="form-group"><label for="livestock-count">Count:</label><input type="number" id="livestock-count" class="form-control" min="0"></div>';
                 content += '<div style="color:white" class="form-group"><label for="feeding-schedule">Feeding Schedule:</label><select id="feeding-schedule" class="form-control"><option>Twice a day</option><option>Three times a day</option><option>Once a day</option></select></div>';
                 content += '<div style="color:white" class="form-group"><label for="health-status">Health Status:</label><select id="health-status" class="form-control"><option>Good</option><option>Fair</option><option>Poor</option><option>Excellent</option></select></div>';
-                content += '<button class="btn btn-secondary" style="color:white" onclick="addLivestock()">Add Livestock</button>';
+                content += '<button class="btn btn-info" style="color:black" onclick="addLivestock()">Add Livestock</button>';
                 content += '</div>';
                 content += '</div>';
                 content += '</div>';
