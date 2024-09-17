@@ -46,7 +46,7 @@
 <body class="container-fluid" style="padding-top: 25vh;">
     <div class="row">
         <div class="" style="width:30%;text-align: center;">
-            <h1 style="font-weight:bolder;color:white;font-size:60px;padding-top:150px;width:100%;text-align: center;" >
+            <h1 style="font-weight:bolder;color:white;font-size:60px;padding-top:140px;width:100%;text-align: center;height:20%" >
                 Soil Tester 
            </h1>
         </div>
@@ -55,11 +55,11 @@
         <div class="row w">
         <div class="col w" style="width:300px">
             <div class="card" style="width:300px">
-                <img src="sources/yo.png" alt="Avatar" style="width:100%;height:100%;">
+                <img src="sources/nit.jpg" alt="Avatar" style="width:100%;height:100%;">
                 <div class="container">
                   <h4><b>Nitrogen</b></h4>
                     <div class="form-group">
-                        <input type="number" id="nitrogen" class="form-control" placeholder="Enter Nitrogen value" required min="0" step="1">
+                        <input type="number" id="nitrogen" style="border:white" class="form-control" placeholder="Enter Nitrogen value" required min="0" step="1">
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="container">
                     <h4><b>Phosphourus</b></h4>
                     <div class="form-group">
-                        <input type="number" id="phosphorus" class="form-control" placeholder="Enter Phosphorus value" required min="0" step="1">
+                        <input type="number" style="border:white" id="phosphorus" class="form-control" placeholder="Enter Phosphorus value" required min="0" step="1">
                     </div>
                 </div>
             </div> 
@@ -81,7 +81,7 @@
                 <div class="container">
                     <h4><b>Pottasium</b></h4>
                     <div class="form-group">
-                        <input type="number" id="potassium" class="form-control" placeholder="Enter Potassium value" required min="0" step="1">
+                        <input style="border:white" type="number" id="potassium" class="form-control" placeholder="Enter Potassium value" required min="0" step="1">
                     </div>
                 </div>
             </div>
@@ -89,30 +89,35 @@
     </div>
     </div>
     
-        <div class="row justify-content-between container-fluid" style="padding-top:30px;width:1020px;float:right;">
+        <div class="row justify-content-between container-fluid" style="padding-top:40px;width:1020px;float:right;">
         
 
                 <div class="chip  form-group" style="width:300px;">
                     <img src="sources/ayy.jpeg" alt="Person" width="96" height="96">
-                    <input type="number" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" id="temperature" class="form-control" placeholder="Enter Temperature" required step="0.1">
+                    <input type="number" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;;padding-top:12px" id="temperature" class="form-control" placeholder="Enter Temperature" required step="0.1">
                 </div>
                 <div style="width:30px"></div>
         
                 <div class="chip form-group" style="width:300px">
                     <img src="sources/ayy.jpeg" alt="Person" width="96" height="96">
-                    <input type="number" id="ph" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" class="form-control" placeholder="Enter pH value" required step="0.1" min="0" max="14"> 
+                    <input type="number" id="ph" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;;padding-top:12px" class="form-control" placeholder="Enter pH value" required step="0.1" min="0" max="14"> 
                 </div>
               
                 <div style="width:30px"></div>
                 <div class="chip form-group" style="width:300px;">
                     <img src="sources/ayy.jpeg" alt="Person" width="96" height="96"> 
-                    <input type="number" id="rainfall" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" class="form-control" placeholder="Enter Rainfall" required min="0" step="1">                    
+                    <input type="number" id="rainfall" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;;padding-top:12px" class="form-control" placeholder="Enter Rainfall" required min="0" step="1">                    
                 </div>
                 <div style="width:30px"></div>
-        </div>    
+        </div> 
+        <div class="form-group">
+            <input type="number" id="humidity" style="width:406px" class="form-control" placeholder="Enter Humidity" required step="1" min="0" max="100">
+        </div>
+        <button type="submit" class="btn btn-info" style="margin-top: 10px;width:200px">Get Prediction</button>
+        <button type="reset" class="btn btn-danger" style="margin-top: 10px;width:200px">Clear</button>   
             
         
-    
+
     </form>
 
     </div>
@@ -128,14 +133,10 @@
 
                 <!--
 
-                <div class="form-group">
-                    <label for="humidity">Humidity (%)</label>
-                    <input type="number" id="humidity" class="form-control" placeholder="Enter Humidity" required step="1" min="0" max="100">
-                </div>
+
                 
 
-                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Get Prediction</button>
-                <button type="reset" class="btn btn-secondary" style="margin-top: 10px; margin-left: 10px;">Clear</button>
+
 
     <script>
         document.getElementById('npkForm').addEventListener('submit', function(event) {
