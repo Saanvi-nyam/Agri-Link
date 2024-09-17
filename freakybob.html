@@ -92,21 +92,21 @@
         <div class="row justify-content-between container-fluid" style="padding-top:30px;width:1020px;float:right;">
         
 
-                <div class="chip  " style="width:300px;">
+                <div class="chip  form-group" style="width:300px;">
                     <img src="sources/ayy.jpeg" alt="Person" width="96" height="96">
-                    Temprature | 90
+                    <input type="number" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" id="temperature" class="form-control" placeholder="Enter Temperature" required step="0.1">
                 </div>
                 <div style="width:30px"></div>
         
-                <div class="chip " style="width:300px">
+                <div class="chip form-group" style="width:300px">
                     <img src="sources/ayy.jpeg" alt="Person" width="96" height="96">
-                        Ph Data | 80
+                    <input type="number" id="ph" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" class="form-control" placeholder="Enter pH value" required step="0.1" min="0" max="14"> 
                 </div>
               
                 <div style="width:30px"></div>
-                <div class="chip " style="width:300px;">
-                    <img src="sources/ayy.jpeg" alt="Person" width="96" height="96">
-                        Rain fall | 2cm +
+                <div class="chip form-group" style="width:300px;">
+                    <img src="sources/ayy.jpeg" alt="Person" width="96" height="96"> 
+                    <input type="number" id="rainfall" style="width:200px;background-color: #f1f1f1;border: #f1f1f1;" class="form-control" placeholder="Enter Rainfall" required min="0" step="1">                    
                 </div>
                 <div style="width:30px"></div>
         </div>    
@@ -126,35 +126,16 @@
             
 
 
-                <!--<div class="form-group">
-                    <input type="number" id="potassium" class="form-control" placeholder="Enter Potassium value" required min="0" step="1">
-                </div>
-                <div class="form-group">
-                    <label for="temperature">Temperature (°C)</label>
-                    <input type="number" id="temperature" class="form-control" placeholder="Enter Temperature" required step="0.1">
-                </div>
+                <!--
+
                 <div class="form-group">
                     <label for="humidity">Humidity (%)</label>
                     <input type="number" id="humidity" class="form-control" placeholder="Enter Humidity" required step="1" min="0" max="100">
                 </div>
-                <div class="form-group">
-                    <label for="ph">pH</label>
-                    <input type="number" id="ph" class="form-control" placeholder="Enter pH value" required step="0.1" min="0" max="14">
-                </div>
-                <div class="form-group">
-                    <label for="rainfall">Rainfall (mm)</label>
-                    <input type="number" id="rainfall" class="form-control" placeholder="Enter Rainfall" required min="0" step="1">
-                </div>
+                
+
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Get Prediction</button>
                 <button type="reset" class="btn btn-secondary" style="margin-top: 10px; margin-left: 10px;">Clear</button>
-                <div class="spinner-border text-primary" role="status" id="loadingSpinner">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </form>
-
-            <div id="result" style="margin-top: 20px;" class="alert alert-info" role="alert" hidden></div>
-        </div>
-    </div>
 
     <script>
         document.getElementById('npkForm').addEventListener('submit', function(event) {
