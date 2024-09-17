@@ -6,7 +6,7 @@ import logging
 app = Flask(__name__)
 
 # Load the trained model (NPKModel.pkl) during startup
-model_path = r'C:\saanvi_code\Agri-link-main\sources\NPKModel.pkl'
+model_path = r'sources/NPKModel.pkl'
 
 try:
     # Load the model using joblib
@@ -24,7 +24,7 @@ except Exception as e:
 
 # Video dictionary for rendering in HTML templates
 video = {
-    "url": "/static/video/sup.mp4"
+    "url": "/sources/sup.mp4"
 }
 
 @app.route('/')
