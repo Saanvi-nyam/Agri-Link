@@ -29,11 +29,11 @@ video = {
 
 @app.route('/')
 def home():
-    return render_template('main.html', vid=video)
+    return render_template(r'main.html', vid=video)
 
 @app.route('/farm')
 def farm():
-    return render_template('farm.html', vid=video)
+    return render_template(r'farm.html', vid=video)
 
 @app.route('/weather')
 def weather():
