@@ -33,7 +33,7 @@
         </div>
     </nav>
     <video autoplay muted loop id="backgroundVideo" style=" position: fixed;right: 0;bottom: 0;min-width: 100%;min-height: 100%;z-index: -1;object-fit: cover;">
-        <source src="sources/sup.mp4" type="video/mp4">
+        <source src="sup.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
     <title>Soil Tester</title>
@@ -116,10 +116,12 @@
         <button type="submit" class="btn btn-info" style="margin-top: 10px;width:200px">Get Prediction</button>
         <button type="reset" class="btn btn-danger" style="margin-top: 10px;width:200px">Clear</button>   
             
-        
+        <div class="spinner-border text-primary" role="status" id="loadingSpinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
 
     </form>
-
+    <div id="result" style="margin-top: 20px;" style="color:black" class="alert alert-info" role="alert" hidden></div>
     </div>
     <script>
         document.getElementById('npkForm').addEventListener('submit', function(event) {
