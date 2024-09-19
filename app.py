@@ -24,7 +24,7 @@ except Exception as e:
 
 # Video dictionary for rendering in HTML templates
 video = {
-    "url": "templates/ sup.mp4"
+    "sources/sup.mp4"
 }
 
 @app.route('/')
