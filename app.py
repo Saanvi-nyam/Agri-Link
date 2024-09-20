@@ -6,7 +6,7 @@ import logging
 app = Flask(__name__)
 
 # Load the trained model (NPKModel.pkl) during startup
-model_path = r'C:\Users\saura\OneDrive\Documents\GitHub\Agri-link\sources\NPKModel.pkl'
+model_path = r'C:\Users\saura\OneDrive\Documents\GitHub\Agri-link\static\NPKModel.pkl'
 
 try:
     # Load the model using joblib
@@ -28,22 +28,6 @@ video = {
 }
 
 @app.route('/')
-def home():
-    return render_template(r'main.html', vid=video)
-
-@app.route('/farm')
-def farm():
-    return render_template(r'farm.html', vid=video)
-
-@app.route('/weather')
-def weather():
-    return render_template('Weatherapp.html', vid=video)
-
-@app.route('/price')
-def price():
-    return render_template('PriceObserver.html', vid=video)
-
-@app.route('/soil')
 def soil():
     return render_template('soilt.html', vid=video)
 
