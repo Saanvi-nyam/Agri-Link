@@ -6,7 +6,7 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
             <div class="container-fluid">
             <ul class="navbar-nav">
-                <a class="navbar-brand" href="bit.ly/agri-link" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
+                <a class="navbar-brand" href="https://bit.ly/agri-link" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
                 <li class="nav-item">
                     <a class="nav-link " style="color:white;" href="farm.html">Farm manager</a>
                 </li>
@@ -42,8 +42,13 @@
         </div>
         <div class="" style="width:500px;align-items: center;">
             <div data-mdb-ripple-init class="" style="text-align: center;padding-top:30px">
-                <div class="btn btn-primary btn-rounded">
+                <div class="btn btn-info btn-rounded">
                     <label class="" for="customFile1">Choose file</label>
+                    <input type="file" class="form-control d-none" id="customFile1" style="text-align: left;" onchange="displaySelectedImage(event, 'selectedImage')" />
+                </div>
+                
+                <div class="btn btn-success btn-rounded">
+                    <label class="" for="customFile1">Upload</label>
                     <input type="file" class="form-control d-none" id="customFile1" style="text-align: left;" onchange="displaySelectedImage(event, 'selectedImage')" />
                 </div>
             </div>
