@@ -1,5 +1,6 @@
 <html>
     <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
         <video  autoplay muted loop id="backgroundVideo" style=" position: fixed;right: 0;bottom: 0;min-width: 100%;min-height: 100%;z-index: -1;object-fit: cover;"><source src="sup.mp4" class="du" type="video/mp4"></video>
@@ -35,6 +36,7 @@
     <body style="padding-top:150px;color:white" class="container">
     <div class="row">
         <h1 class="col" style="font-weight:bolder ;padding-top:180px;text-align:center;font-size:70px">Crop Doctor</h1>
+        <div id="result"></div>
         <div style="padding-top: 70px;padding-bottom: 40px;" class="col"> <!--dont touch this at all--> 
         <div class="">
             <img id="selectedImage" src="plcholder.jpg"
@@ -44,12 +46,11 @@
             <div data-mdb-ripple-init class="" style="text-align: center;padding-top:30px">
                 <div class="btn btn-info btn-rounded">
                     <label class="" for="customFile1">Choose file</label>
-                    <input type="file" class="form-control d-none" id="customFile1" style="text-align: left;" onchange="displaySelectedImage(event, 'selectedImage')" />
+                    <input type="file" class="form-control d-none" id="fileInput" accept="image/*" style="text-align: left;" onchange="displaySelectedImage(event, 'selectedImage')" />
                 </div>
-                
-                <div class="btn btn-success btn-rounded">
-                    <label class="" for="customFile1">Upload</label>
-                    <input style="text-align: left;" />
+           
+                <div style="padding-top:20px">
+                    <button style="text-align: left;" class="btn btn-success btn-rounded" id="predictButton">Predict</button>
                 </div>
             </div>
         </div>
@@ -71,5 +72,85 @@
             reader.readAsDataURL(fileInput.files[0]);
         }
     }
+    let model;
+
+    // Load the TensorFlow.js model
+    async function loadModel() {
+        try {
+            model = await tf.loadLayersModel('model/model.json'); // Update with relative path
+            console.log("Model loaded.");
+        } catch (error) {
+            console.error("Error loading model:", error);
+        }
+    }
+
+    async function predict() {
+        if (!model) {
+            alert("Model is not loaded yet. Please wait.");
+            return;
+        }
+
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert("Please select an image file.");
+            return;
+        }
+
+        console.log("Selected file:", file);
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.onload = async () => {
+            const tensorImg = tf.browser.fromPixels(img)
+                .resizeNearestNeighbor([256, 256]) // Resize to match model's input shape
+                .expandDims(0)
+                .div(255); // Normalize to [0, 1]
+
+            console.log("Preprocessed image shape:", tensorImg.shape);
+
+            const prediction = model.predict(tensorImg);
+            console.log("Raw prediction result:", prediction);
+
+            const probabilities = prediction.softmax();
+            probabilities.print(); // Log the probabilities
+
+            const classIndex = probabilities.argMax(-1).dataSync()[0];
+            console.log(`Predicted Class Index: ${classIndex}`);
+
+            const classesResponse = await fetch('classes.json'); // Update with relative path
+            if (!classesResponse.ok) {
+                console.error("Failed to load classes.json:", classesResponse.statusText);
+                return;
+            }
+
+            const classMap = await classesResponse.json();
+            console.log("Class mapping loaded:", classMap);
+
+            // Convert object to array
+            const classNames = Object.keys(classMap);
+            console.log("Class names array:", classNames);
+
+            // Check if classIndex is valid
+            if (classIndex < 0 || classIndex >= classNames.length) {
+                console.error("Invalid class index:", classIndex);
+                document.getElementById('result').innerText = "Prediction failed.";
+                return;
+            }
+
+            document.getElementById('result').innerText = `Predicted Class: ${classNames[classIndex]}`;
+            document.getElementById('predictedImage').src = img.src;
+            document.getElementById('predictedImage').style.display = 'block';
+        };
+
+        img.onerror = () => {
+            console.error("Error loading the image.");
+            alert("Error loading the image. Please try again.");
+        };
+    }
+
+    document.getElementById('predictButton').addEventListener('click', predict);
+    
+    loadModel(); // Load the model when the page is loaded
     </script>
 </html>
