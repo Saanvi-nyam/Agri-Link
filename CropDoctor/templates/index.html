@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Prediction</title>
+    <style>
+        /* Styling as before */
+    </style>
+</head>
+<body>
+    <h1>Plant Disease Prediction</h1>
+    <div class="container">
+        <input type="file" id="imageInput" accept="image/*">
+        <button class="btn" onclick="uploadImage()">Predict</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById("imageInput");
+            const file = fileInput.files[0];
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";  // Clear previous result
+
+            if (!file) {
+                resultDiv.innerHTML = "<p class='error'>Please select an image file.</p>";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // Send the file to the Flask backend for prediction
+            fetch('/predict', { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.predicted_class) {
+                        resultDiv.innerHTML = `<p><strong>Predicted Disease:</strong> ${data.predicted_class}</p>
+                                               <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%</p>`;
+                    } else if (data.error) {
+                        resultDiv.innerHTML = `<p class='error'>Error: ${data.error}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);  // Log any fetch errors to the console
+                    resultDiv.innerHTML = `<p class='error'>Error: ${error.message}</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
