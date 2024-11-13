@@ -1,6 +1,19 @@
+let model;
+
+// Load the TensorFlow.js model
+async function loadModel() {
+    try {
+        model = await tf.loadLayersModel('model.json'); // Update with relative path
+        console.log("Model loaded.");
+    } catch (error) {
+        console.error("Error loading model:", error);
+    }
+}
+
+// Function to display the selected image
 function displaySelectedImage(event, elementId) {
-    const selectedImage = document.getElementById(elementId);
     const fileInput = event.target;
+    const selectedImage = document.getElementById(elementId);
 
     if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
@@ -13,18 +26,7 @@ function displaySelectedImage(event, elementId) {
     }
 }
 
-let model;
-
-// Load the TensorFlow.js model
-async function loadModel() {
-    try {
-        model = await tf.loadLayersModel('model.json'); // Update with relative path
-        console.log("Model loaded.");
-    } catch (error) {
-        console.error("Error loading model:", error);
-    }
-} // <-- Missing closing brace added here
-
+// Function to make a prediction
 async function predict() {
     if (!model) {
         alert("Model is not loaded yet. Please wait.");
@@ -44,9 +46,10 @@ async function predict() {
     img.src = URL.createObjectURL(file);
     img.onload = async () => {
         const tensorImg = tf.browser.fromPixels(img)
-            .resizeNearestNeighbor([256, 256]) // Resize to match model's input shape
-            .expandDims(0)
-            .div(255); // Normalize to [0, 1]
+            .resizeNearestNeighbor([128, 128]) // Resize to match model's input shape
+            .toFloat()
+            .expandDims()
+            .div(tf.scalar(255)); // Normalize to [0, 1]
 
         console.log("Preprocessed image shape:", tensorImg.shape);
 
@@ -92,4 +95,5 @@ async function predict() {
 
 document.getElementById('predictButton').addEventListener('click', predict);
 
+// Load the model when the page loads
 loadModel();
