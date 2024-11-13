@@ -11,20 +11,6 @@ async function loadModel() {
 }
 
 // Function to display the selected image
-function displaySelectedImage(event, elementId) {
-    const fileInput = event.target;
-    const selectedImage = document.getElementById(elementId);
-
-    if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            selectedImage.src = e.target.result;
-        };
-
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-}
 
 // Function to make a prediction
 async function predict() {

@@ -1,7 +1,7 @@
 <html >
     <head>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-        <link href="bootstrap.css" rel="stylesheet"  crossorigin="anonymous">
+        <link href="{{url_for('static', filename='bootstrap.css')}}" rel="stylesheet"  crossorigin="anonymous">
         
         
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -33,7 +33,7 @@
         </nav>
           
     </head>
-    <body style="background-image:url(daasvg.svg);background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;padding-top:150px;color:white" class="container;background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;">
+    <body style="background-image: url('/static/daasvg.svg');background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;padding-top:150px;color:white" class="container;background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;">
     <div class="row">   
             
         <div class="col">
@@ -42,7 +42,7 @@
         </div>
         <div style="padding-top: 70px;padding-bottom: 40px;" class="col"> <!--dont touch this at all--> 
         <div class="">
-            <img id="selectedImage" src="plcholder.jpg"
+            <img id="selectedImage" src="{{url_for('static', filename='plcholder.jpg')}}"
             alt="example placeholder" style="width: 500px;" />
         </div>
         <div class="" style="width:500px;align-items: center;">
@@ -63,7 +63,7 @@
     </div>
 
     </body>
-    <script src="js.js">
+    
 
 
     </script>

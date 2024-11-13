@@ -6,7 +6,7 @@ import logging
 app = Flask(__name__)
 
 # Load the trained model (NPKModel.pkl) during startup
-model_path = r'C:\Users\saura\OneDrive\Documents\GitHub\Agri-link\SOIL TESOR\static\NPKModel.pkl'
+model_path = r'C:\Users\saura\OneDrive\Documents\GitHub\Agri-link\Soil tester\static\NPKModel.pkl'
 
 try:
     # Load the model using joblib
