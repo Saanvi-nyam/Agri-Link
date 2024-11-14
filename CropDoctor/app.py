@@ -22,7 +22,8 @@ def preprocess_image(img, img_size=(128, 128)):
 # Route to serve the HTML page
 @app.route('/')
 def home():
-    return render_template('index.html')  # Ensure 'index.html' is in the 'templates' folder
+    svg_path = "{{url_for('daasvg.svg')}}"
+    return render_template('index.html', svg=svg_path)  # Ensure 'index.html' is in the 'templates' folder
 
 # Prediction route
 @app.route('/predict', methods=['POST'])
