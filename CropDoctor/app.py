@@ -8,8 +8,8 @@ import os
 app = Flask(__name__)  # Corrected __name_
 
 # Load the model and class names at startup
-model = load_model(r'C:\saanvi_code\CropDoctor\plant_disease_model.h5')  # Added raw string for Windows path
-with open(r'C:\saanvi_code\CropDoctor\classes.json', 'r') as f:
+model = load_model(r'C:\Users\saura\OneDrive\Documents\GitHub\agri-link\CropDoctor\plant_disease_model.h5')  # Added raw string for Windows path
+with open(r'C:\Users\saura\OneDrive\Documents\GitHub\agri-link\CropDoctor\classes.json', 'r') as f:
     class_names = json.load(f)
 
 # Function to preprocess the image
