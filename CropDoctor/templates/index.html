@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,6 @@
                     <a class="nav-link " style="color:white;" href="farm.html">Farm manager</a>
                 </li>
                 <li class="nav-item">
-
                     <a class="nav-link " style="color:white" href="Weatherapp.html ">Weather Forecaster</a>
                 </li>
                 <li class="nav-item">
@@ -23,27 +23,25 @@
                 <li class="nav-item">
                     <a class="nav-link "  style="color:white;" href="cropdoc.html">Crop Doctor</a>
                 </li>
-
             </ul>
             <div>
                 <a class="btn btn-info" href="main.html">Back to home</a>
             </div>
         </div>
     </nav>
-
 </head>
-<body style="background-image: url({{url_for('static',filename='daasvg.svg')}});background-repeat:no-repeatm;background-size:cover;background-position:center;background-attachment:fixed;padding-top:150px;color:white" class="container;background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;">
+<body style="background-image: url({{url_for('static', filename='daasvg.svg')}});background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;padding-top:150px;color:white">
     <div class="row">
         <div class="col">    
-            <h1 class="" style="font-weight:bolder ;color:rgb(255, 255, 255);padding-top:180px;text-align:center;font-size:70px">Crop Doctor</h1>
+            <h1 style="font-weight:bolder; color:rgb(255, 255, 255); padding-top:180px; text-align:center; font-size:70px">Crop Doctor</h1>
             <div id="result" class="result"></div>
         </div>
-        <div style="padding-top: 70px;padding-bottom: 40px;" class="col">
-            <img id="selectedImage" src="{{url_for('static', filename='plcholder.jpg')}}"alt="example placeholder" style="width: 500px;" />
-            <div style="width:500px;align-items: center;padding-top: 30px;" class="justify-content-center">
+        <div style="padding-top: 70px; padding-bottom: 40px;" class="col">
+            <img id="selectedImage" src="{{url_for('static', filename='plcholder.jpg')}}" alt="example placeholder" style="width: 500px;" />
+            <div style="width:500px; align-items: center; padding-top: 30px;" class="justify-content-center">
                 <input type="file" id="imageInput" accept="image/*" class="btn btn-success btn-rounded form-control justify-content-center" style="width: 47%;">
                 <div style="padding-top: 20px;">
-                    <button class="btn btn-success" style="text-align: left;" class="btn btn-success btn-rounded" onclick="uploadImage()">Predict</button>
+                    <button class="btn btn-success" style="text-align: left;" onclick="uploadImage()">Predict</button>
                 </div>
             </div>
         </div>
@@ -69,7 +67,8 @@
                 .then(data => {
                     if (data.predicted_class) {
                         resultDiv.innerHTML = `<p><strong>Predicted Disease:</strong> ${data.predicted_class}</p>
-                                               <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%</p>`;
+                                               <p><strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%</p>
+                                               <p><strong>Cure:</strong> ${data.cure}</p>`;
                     } else if (data.error) {
                         resultDiv.innerHTML = `<p class='error'>Error: ${data.error}</p>`;
                     }
@@ -80,6 +79,7 @@
                 });
         }
     </script>
+
     <style>
         
 :root,
