@@ -9,23 +9,23 @@
             <ul class="navbar-nav">
                 <a class="navbar-brand" href="https://bit.ly/agri-link" style="padding:5px;border-radius: 5px;font-size: 20px;font-weight: bolder;">Agrilink-software</a>
                 <li class="nav-item">
-                    <a class="nav-link " style="color:white;" href="farm.html">Farm manager</a>
+                    <a class="nav-link " style="color:white;" href="https://yajathome.github.io/Agri-link/farm.html">Farm manager</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " style="color:white" href="Weatherapp.html ">Weather Forecaster</a>
+                    <a class="nav-link " style="color:white" href="https://yajathome.github.io/Agri-link/Weatherapp.html ">Weather Forecaster</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " style="color:white" href="PriceObserver.html">Price observer</a>
+                    <a class="nav-link " style="color:white" href="https://yajathome.github.io/Agri-link/PriceObserver.html">Price observer</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " style="color:white" href="soilt.html">Soil tester</a>
+                    <a class="nav-link " style="color:white" href="https://127.0.0.1:5050">Soil tester</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  style="color:white;" href="cropdoc.html">Crop Doctor</a>
+                    <a class="nav-link "  style="color:white;" href="https://yajathome.github.io/Agri-link/cropdoc.html">Crop Doctor</a>
                 </li>
             </ul>
             <div>
-                <a class="btn btn-info" href="main.html">Back to home</a>
+                <a class="btn btn-info" href="https://yajathome.github.io/Agri-link/main.html">Back to home</a>
             </div>
         </div>
     </nav>
@@ -33,11 +33,14 @@
 <body style="background-image: url({{url_for('static', filename='daasvg.svg')}});background-repeat:no-repeat;background-size:cover;background-position:center;background-attachment:fixed;padding-top:150px;color:white">
     <div class="row">
         <div class="col">    
+          <div >
             <h1 style="font-weight:bolder; color:rgb(255, 255, 255); padding-top:180px; text-align:center; font-size:70px">Crop Doctor</h1>
-            <div id="result" class="result"></div>
+            <div id="result" class="result" style="padding-left:40px;text-align:center"></div>
+          </div>  
+
         </div>
         <div style="padding-top: 70px; padding-bottom: 40px;" class="col">
-            <img id="selectedImage" src="{{url_for('static', filename='plcholder.jpg')}}" alt="example placeholder" style="width: 500px;" />
+            <img id="imagePreview" src="{{url_for('static', filename='plcholder.jpg')}}" alt="example placeholder" style="width: 500px;" />
             <div style="width:500px; align-items: center; padding-top: 30px;" class="justify-content-center">
                 <input type="file" id="imageInput" accept="image/*" class="btn btn-success btn-rounded form-control justify-content-center" style="width: 47%;">
                 <div style="padding-top: 20px;">
@@ -78,6 +81,19 @@
                     resultDiv.innerHTML = `<p class='error'>Error: ${error.message}</p>`;
                 });
         }
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('imagePreview');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
     </script>
 
     <style>
